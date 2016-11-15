@@ -1,0 +1,21 @@
+Metabolite,pos_in_ppm,couple_code,J_constant,relative_intensity,overwrite_pos,overwrite_truncation,Include_multiplet
+L-Lactic acid,1.32,1,6.93,4,1.3225,n,1
+L-Lactic acid,4.1,3,6.92,1,4.106,n,1
+L-Alanine,1.46,1,7.14,5,1.474,n,1
+L-Alanine,3.76,3,7.2,1,3.773,n,1
+L-Valine,0.976,1,7.01,3,0.9835,n,1
+L-Valine,1.029,1,7.05,3,1.0345,n,1
+L-Valine,2.261,-1,"2.28,2.33",1,n,n,0
+L-Valine,3.601,1,4.33,1,3.602,n,1
+L-Histidine,7.09,0,,1,7.053,n,1
+L-Histidine,7.9,0,,1,7.774,n,1
+Formic acid,8.44,0,,1,8.452,n,1
+L-Threonine,1.31,1,6.41,3,1.323,n,1
+L-Threonine,3.57,1,4.76,1,3.572,n,1
+Pyruvic acid,2.46,0,,3,2.467,n,1
+L-Glutamic acid,2.04,-2,"1.993,2.08",1,n,n,1
+L-Glutamic acid,2.119,-2,"2.081,2.166",1,n,n,1
+L-Glutamic acid,2.341,-1,"27,19.8,12.6,5.4,0,-10.2,-16.8,-25.2,-27.6,-33.6","1,1,5,5,1,1,7,7,1,1",2.366,n,1
+L-Glutamic acid,3.749,3,7.2,1,n,n,1
+D-Glucose,5.22,1,3.73,8,5.233,n,1
+D-Glucose,3.728,-1,"22.8,17.4,10.2,5.4,0,-6,-12.6,-15,-18,-24.6","2,2,2,1,3,4,3,3,3,2.5",3.74,n,1
