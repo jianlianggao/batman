@@ -1,4 +1,4 @@
-batman<-function(BrukerDataDir, BrukerDataZipDir, txtFile, rData, createDir = TRUE, runBATMANDir = getwd(), 
+batman<-function(BrukerDataDir, BrukerDataZipDir, txtFile, rData, batmanOptions, multiDataUser, metaList, createDir = TRUE, runBATMANDir = getwd(), 
                  overwriteDir = FALSE, figBatmanFit = TRUE, listMeta = FALSE, 
                  figRelCon = FALSE, figMetaFit = FALSE)
 {
@@ -25,6 +25,24 @@ batman<-function(BrukerDataDir, BrukerDataZipDir, txtFile, rData, createDir = TR
   dir4<-paste(dirA[2],"/multi_data.dat",sep="")
   dir6<-paste(dirA[2],"/chemShiftPerSpec.dat",sep="")
   dir7<-paste(dirA[4],"/",sep = "")
+  
+  ## for testing in Galaxy passing parameters
+  if (!missing(batmanOptions))
+  {
+      dirTmp<-paste(dirA[2],"/batmanOptions.txt",sep="")
+      file.copy(batmanOptions, to=dirTmp, overwrite=TRUE)
+  }
+  if (!missing(multiDataUser))
+  {
+      dirTmp<-paste(dirA[2],"/multi_data_user.csv",sep="")
+      file.copy(multiDataUser, to=dirTmp, overwrite=TRUE)
+  }
+  if (!missing(metaList))
+  {
+      dirTmp<-paste(dirA[2],"/metabolitesList.csv",sep="")
+      file.copy(metaList, to=dirTmp, overwrite=TRUE)
+  }
+  
   
   BOchange <- checkBatmanOptions(dir1)
   
