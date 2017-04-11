@@ -1,4 +1,4 @@
-batman<-function(BrukerDataDir, BrukerDataZipDir, txtFile, rData, createDir = TRUE, runBATMANDir = getwd(), 
+batman<-function(BrukerDataDir, BrukerDataZipDir, txtFile, nmrMLfile, rData, batmanOptions, multiDataUser, metaList, createDir = TRUE, runBATMANDir = getwd(), 
                  overwriteDir = FALSE, figBatmanFit = TRUE, listMeta = FALSE, 
                  figRelCon = FALSE, figMetaFit = FALSE)
 {
@@ -25,6 +25,24 @@ batman<-function(BrukerDataDir, BrukerDataZipDir, txtFile, rData, createDir = TR
   dir4<-paste(dirA[2],"/multi_data.dat",sep="")
   dir6<-paste(dirA[2],"/chemShiftPerSpec.dat",sep="")
   dir7<-paste(dirA[4],"/",sep = "")
+  
+  ## for testing in Galaxy passing parameters 
+  if (!missing(batmanOptions)) 
+    {
+    dirTmp<-paste(dirA[2],"/batmanOptions.txt",sep="") 
+    file.copy(batmanOptions, to=dirTmp, overwrite=TRUE) 
+    } 
+  if (!missing(multiDataUser)) 
+    { 
+     dirTmp<-paste(dirA[2],"/multi_data_user.csv",sep="") 
+     file.copy(multiDataUser, to=dirTmp, overwrite=TRUE) 
+     } 
+  if (!missing(metaList)) 
+    { 
+     dirTmp<-paste(dirA[2],"/metabolitesList.csv",sep="") 
+     file.copy(metaList, to=dirTmp, overwrite=TRUE) 
+     } 
+  
   
   BOchange <- checkBatmanOptions(dir1)
   
@@ -164,7 +182,10 @@ batman<-function(BrukerDataDir, BrukerDataZipDir, txtFile, rData, createDir = TR
   if (!missing(BrukerDataDir))
   {
     sa<-readBruker(BrukerDataDir)  
-    write.table(sa,file=dir2,row.names=FALSE,col.names=TRUE,quote=FALSE,sep = "\t")
+    test1<-sa[sa[,1]>-0.2,] # trim the data points and get rid of unnecessary ranges
+    test1<-test1[test1[,1]<10.2,]
+    write.table(test1,file=dir2,row.names=FALSE,col.names=TRUE,quote=FALSE,sep = "\t")
+    
   } else if (!(missing(BrukerDataZipDir)))  {
     sa<-readBrukerZipped(BrukerDataZipDir)
     write.table(sa,file=dir2,row.names=FALSE,col.names=TRUE,quote=FALSE,sep = "\t")
@@ -173,6 +194,9 @@ batman<-function(BrukerDataDir, BrukerDataZipDir, txtFile, rData, createDir = TR
     file.copy(txtFile, to=dir2, overwrite=TRUE)
     sa<-read.table(txtFile, header=TRUE,sep="\t",comment.char = "")
     #write.table(sa,file=dir2,row.names=FALSE,col.names=TRUE,quote=FALSE,sep = "\t")
+  } else if (!missing(nmrMLfile)) {
+    sa<-readnmrML(nmrMLfile)
+    write.table(sa,file=dir2,row.names=FALSE,col.names=TRUE,quote=FALSE,sep = "\t")
   } else if (!missing(rData)) {
     sa<-rData
     write.table(sa,file=dir2,row.names=FALSE,col.names=TRUE,quote=FALSE,sep = "\t")
