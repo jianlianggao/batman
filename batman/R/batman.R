@@ -263,7 +263,7 @@ batman<-function(BrukerDataDir, BrukerDataZipDir, txtFile, rData, batmanOptions,
   ## spectra number
   write.table(stit[,sno],file=paste(dirctime, "/spectraTitle.txt", sep=""),row.names=FALSE,col.names=FALSE,quote=FALSE,sep = "\t")
   
-  cp<-file.copy(dir2,dir5)
+  ##cp<-file.copy(dir2,dir5)  #- not copying NMRdata.txt to the output folder to avoid huge disk demanding
   cp<-file.copy(dir4,dir5)
   
   rr<-0
