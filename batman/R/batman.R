@@ -274,7 +274,7 @@ batman<-function(BrukerDataDir, BrukerDataZipDir, txtFile, nmrMLfile, rData, bat
   
   rr<-0
   if (wr>1) {
-    cl<-makeCluster(wr, type = "SOCK")
+    cl<-makeCluster(wr, type = "FOCK")  ## original was cl<-makeCluster(wr, type = "SOCK"), maybe this caused large file crash.
     registerDoSNOW(cl)  
   } else {
     cat ("Percentage completed...\n")
