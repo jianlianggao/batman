@@ -268,7 +268,7 @@ batman<-function(BrukerDataDir, BrukerDataZipDir, txtFile, rData, batmanOptions,
   
   rr<-0
   if (wr>1) {
-    cl<-makeCluster(wr, type = "FOCK") ##which was cl<-makeCluster(wr, type = "SOCK") , may be the cause of memory issue
+    cl<-makeCluster(wr, type = "FORK") ##which was cl<-makeCluster(wr, type = "SOCK") , may be the cause of memory issue
     registerDoSNOW(cl)  
   } else {
     cat ("Percentage completed...\n")
