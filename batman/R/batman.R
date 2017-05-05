@@ -1,4 +1,4 @@
-batman<-function(BrukerDataDir, BrukerDataZipDir, txtFile, rData, batmanOptions, multiDataUser, metaList, createDir = TRUE, runBATMANDir = getwd(), 
+batman<-function(BrukerDataDir, BrukerDataZipDir, txtFile, nmrMLfile, nmrMLZip, nmrMLDir, rData, batmanOptions, multiDataUser, metaList, createDir = TRUE, runBATMANDir = getwd(), 
                  overwriteDir = FALSE, figBatmanFit = TRUE, listMeta = FALSE, 
                  figRelCon = FALSE, figMetaFit = FALSE)
 {
@@ -191,6 +191,15 @@ batman<-function(BrukerDataDir, BrukerDataZipDir, txtFile, rData, batmanOptions,
     file.copy(txtFile, to=dir2, overwrite=TRUE)
     sa<-read.table(txtFile, header=TRUE,sep="\t",comment.char = "")
     #write.table(sa,file=dir2,row.names=FALSE,col.names=TRUE,quote=FALSE,sep = "\t")
+  } else if (!missing(nmrMLfile)) {
+    sa<-readnmrML(nmrMLfile)
+    write.table(sa,file=dir2,row.names=FALSE,col.names=TRUE,quote=FALSE,sep = "\t")
+  } else if (!missing(nmrMLZip)) {
+    sa<-readnmrMLzip(nmrMLZip)
+    write.table(sa,file=dir2,row.names=FALSE,col.names=TRUE,quote=FALSE,sep = "\t")
+  } else if (!missing(nmrMLDir)) {
+    sa<-readnmrMLDir(nmrMLDir)
+    write.table(sa,file=dir2,row.names=FALSE,col.names=TRUE,quote=FALSE,sep = "\t")
   } else if (!missing(rData)) {
     sa<-rData
     write.table(sa,file=dir2,row.names=FALSE,col.names=TRUE,quote=FALSE,sep = "\t")
