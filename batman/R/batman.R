@@ -305,7 +305,7 @@ batman<-function(BrukerDataDir, BrukerDataZipDir, txtFile, rData, batmanOptions,
   
   cat("Reading in saved data in folder\n")
   ## read in batman result files
-  #BM<-readBatmanOutput(dirctime, dirA[2]) 
+  BM<-readBatmanOutput(dirctime, dirA[2]) 
   #cat(BM$outputDir)
   ## plot results
   #if (figBatmanFit)
@@ -333,5 +333,5 @@ batman<-function(BrukerDataDir, BrukerDataZipDir, txtFile, rData, batmanOptions,
   
   #cat("\n Completed and all plots were saved in batmanOutput folder\n")
   warnRead<-options(warn = warnDef)
-  #return(BM)
+  return(BM)
 }
