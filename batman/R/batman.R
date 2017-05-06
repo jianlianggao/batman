@@ -305,33 +305,33 @@ batman<-function(BrukerDataDir, BrukerDataZipDir, txtFile, rData, batmanOptions,
   
   cat("Reading in saved data in folder\n")
   ## read in batman result files
-  BM<-readBatmanOutput(dirctime, dirA[2]) 
-  cat(BM$outputDir)
+  #BM<-readBatmanOutput(dirctime, dirA[2]) 
+  #cat(BM$outputDir)
   ## plot results
-  if (figBatmanFit)
-    plotBatmanFit(BM, saveFigDir = dirctime, listMeta = listMeta)
-  if (figRelCon) 
-    plotRelCon(BM, saveFigDir = dirctime)
-  if (figMetaFit)
-    plotMetaFit(BM, saveFigDir = dirctime)
-  if (file.exists(dir3))
-  {
-    file.remove(dir3)
-  }
-  if (file.exists(dir4))
-  {
-    file.remove(dir4)
-  }
-  if (chemshif == 1)
-  {
-    if (file.exists(dir6))
-      file.remove(dir6)
-  }
+  #if (figBatmanFit)
+  #  plotBatmanFit(BM, saveFigDir = dirctime, listMeta = listMeta)
+  #if (figRelCon) 
+  #  plotRelCon(BM, saveFigDir = dirctime)
+  #if (figMetaFit)
+  #  plotMetaFit(BM, saveFigDir = dirctime)
+  #if (file.exists(dir3))
+  #{
+  #  file.remove(dir3)
+  #}
+  #if (file.exists(dir4))
+  #{
+  #  file.remove(dir4)
+  #}
+  #if (chemshif == 1)
+  #{
+  #  if (file.exists(dir6))
+  #    file.remove(dir6)
+  #}
   
   # close all opened plot windows
   while (dev.cur()>1) {dev.off()}
   
-  cat("\n Completed and all plots were saved in batmanOutput folder\n")
+  #cat("\n Completed and all plots were saved in batmanOutput folder\n")
   warnRead<-options(warn = warnDef)
   return(BM)
 }
