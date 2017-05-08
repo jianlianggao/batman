@@ -11,5 +11,7 @@ import(
   iterators,
   snow,
   utils,
-  plotrix
+  plotrix,
+  XML,
+  base64enc
 )
