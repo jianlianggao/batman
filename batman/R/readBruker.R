@@ -8,6 +8,7 @@ readBruker<-function(BrukerDataDir)
   ## read in bruker spectra
   ## find the data files
   ppm <- NULL
+  swp <- NULL #for checking the necessary for interpolation. Added by J Gao.
   pfile <-list.files(path = datapath, pattern = "^procs$", all.files = FALSE,full.names = TRUE, recursive = TRUE, ignore.case = TRUE)
   rfile <-list.files(path = datapath, pattern = "^1r$", all.files = FALSE,full.names = TRUE, recursive = TRUE, ignore.case = TRUE)
   
@@ -25,7 +26,7 @@ readBruker<-function(BrukerDataDir)
   snam <- NULL
   if (L==0 || Lr==0 || L!=Lr)
   {   
-      return (cat("Bruker file does not exist in datapath, or other problems with bruker files...\n"))
+    return (cat("Bruker file does not exist in datapath, or other problems with bruker files...\n"))
   } else {
     for (i in 1:L)
     {    
@@ -66,27 +67,30 @@ readBruker<-function(BrukerDataDir)
       
       if (bytordp==0){machine_format =  "little"}
       else {machine_format = "big"}
-      
+      #read NMR resonance data
       s<-readBin(rfile[i], what="int",n = ftsize, size = 4, signed = T, endian =machine_format)
       s<- ((2^ncproc)* s)
       nspec <- length(s)
       
       tmpppm <- ppm
+      tmpswp <- swp  #for checking if necessary to do interpolation. Added by J Gao.
       
       swp <- sw/sf
       dppm <- swp/(nspec-1)
       ppm<-offset
       ppm<-seq(offset,(offset-swp),by=-dppm)
-      
+  
       ## interpolation
       if (!is.null(tmpppm))
       {
-        if (length(tmpppm) != length(ppm))
+        #if (length(tmpppm) != length(ppm))
+        if ((tmpppm[1] != ppm[1]) || tmpswp != swp || length(tmpppm) != length(ppm))
         {
           sinter <- approx(ppm, s, xout = tmpppm)
           s <- sinter$y
           s[is.na(s)]<-0
           ppm <- tmpppm
+          swp <- tmpswp #Added for checking if necessary to do interpolation. by J Gao.
         }
       }
       
