@@ -353,7 +353,7 @@ batman<-function(BrukerDataDir, BrukerDataZipDir, txtFile, nmrMLfile, nmrMLZip, 
   #debug for time expense
   plotting_end<-Sys.time()
   time_elapsed<-as.numeric(plotting_end-plotting_start, units="secs")
-  write(paste("Plotting time: ", time_elapsed, ": seconds", sep=""), time_log_tmp, append = TRUE)
+  write(paste("Total processing time:", stime, ". \n Plotting time: ", time_elapsed, ": seconds", sep=""), time_log_tmp, append = TRUE)
   
   cat("\n Completed and all plots were saved in batmanOutput folder\n")
   warnRead<-options(warn = warnDef)
