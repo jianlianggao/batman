@@ -1,4 +1,4 @@
-batman<-function(BrukerDataDir, BrukerDataZipDir, txtFile, rData, batmanOptions, multiDataUser, metaList, createDir = TRUE, runBATMANDir = getwd(), 
+batman<-function(BrukerDataDir, BrukerDataZipDir, txtFile, nmrMLfile, nmrMLZip, nmrMLDir, rData, batmanOptions, multiDataUser, metaList, createDir = TRUE, runBATMANDir = getwd(), 
                  overwriteDir = FALSE, figBatmanFit = TRUE, listMeta = FALSE, 
                  figRelCon = FALSE, figMetaFit = FALSE)
 {
@@ -17,7 +17,9 @@ batman<-function(BrukerDataDir, BrukerDataZipDir, txtFile, rData, batmanOptions,
       dirA<-c(extdir,extdir,extdir, dirPST)
     }
   }
-  ctime <- format(Sys.time(), "%d_%b_%H_%M_%S")
+  #debug for time expense
+  begining<-Sys.time()
+  ctime <- format(begining, "%d_%b_%H_%M_%S")
   
   dir1<-paste(dirA[2],"/batmanOptions.txt",sep="")
   dir2<-paste(dirA[2],"/NMRdata.txt",sep="")
@@ -29,18 +31,18 @@ batman<-function(BrukerDataDir, BrukerDataZipDir, txtFile, rData, batmanOptions,
   ## for testing in Galaxy passing parameters
   if (!missing(batmanOptions))
   {
-      dirTmp<-paste(dirA[2],"/batmanOptions.txt",sep="")
-      file.copy(batmanOptions, to=dirTmp, overwrite=TRUE)
+    dirTmp<-paste(dirA[2],"/batmanOptions.txt",sep="")
+    file.copy(batmanOptions, to=dirTmp, overwrite=TRUE)
   }
   if (!missing(multiDataUser))
   {
-      dirTmp<-paste(dirA[2],"/multi_data_user.csv",sep="")
-      file.copy(multiDataUser, to=dirTmp, overwrite=TRUE)
+    dirTmp<-paste(dirA[2],"/multi_data_user.csv",sep="")
+    file.copy(multiDataUser, to=dirTmp, overwrite=TRUE)
   }
   if (!missing(metaList))
   {
-      dirTmp<-paste(dirA[2],"/metabolitesList.csv",sep="")
-      file.copy(metaList, to=dirTmp, overwrite=TRUE)
+    dirTmp<-paste(dirA[2],"/metabolitesList.csv",sep="")
+    file.copy(metaList, to=dirTmp, overwrite=TRUE)
   }
   
   
@@ -48,16 +50,16 @@ batman<-function(BrukerDataDir, BrukerDataZipDir, txtFile, rData, batmanOptions,
   
   if (BOchange$pBI_IP)
   {
-      stop("\n
-      Seems you updated from an old version of batman, 
-      the parameters for post-burn-in, multiplet template 
-      option and parallel processes (for multiple spectra)
-      have been added to the batmanOptions.txt file,
-      please modify their values at:
-      ", dir1,
-      "\n
-      the old batmanOptions.txt file has been renamed as:
-      ", BOchange$dirTime)
+    stop("\n
+         Seems you updated from an old version of batman, 
+         the parameters for post-burn-in, multiplet template 
+         option and parallel processes (for multiple spectra)
+         have been added to the batmanOptions.txt file,
+         please modify their values at:
+         ", dir1,
+         "\n
+         the old batmanOptions.txt file has been renamed as:
+         ", BOchange$dirTime)
   }
   
   dirctime<-paste(dirA[3],"/",ctime,sep="")
@@ -109,7 +111,7 @@ batman<-function(BrukerDataDir, BrukerDataZipDir, txtFile, rData, batmanOptions,
   cat("\nRunning batman...\n")
   #cat("Enter number of post-burn-in iterations (burn-in currently set to ",itoBI, " iterations):\n" )
   #itoPBI<- getinput(lowlim=1,highlim=-1)  
-
+  
   
   cat("Number of burn-in iterations: ", itoBI, "\nNumber of post-burn-in iterations: ",itoPBI, "\n" )
   
@@ -149,13 +151,13 @@ batman<-function(BrukerDataDir, BrukerDataZipDir, txtFile, rData, batmanOptions,
     check<-b[,i]=='n'
     b[check,i]=-50
   }  
-	
+  
   for (i in 1:dim(b)[1])
   {
-	if (length(grep(" ", substring(b[i,1],1,1))) != 0 )
-	b[i,1] <- substring(b[i,1],2)
+    if (length(grep(" ", substring(b[i,1],1,1))) != 0 )
+      b[i,1] <- substring(b[i,1],2)
   }
-	
+  
   D<-order(b[,1])
   bor<-b[D,]
   write.table(bor,file=dir4,sep = "\t",row.names = FALSE,col.names = FALSE,quote=FALSE)
@@ -173,7 +175,7 @@ batman<-function(BrukerDataDir, BrukerDataZipDir, txtFile, rData, batmanOptions,
     print(mL[checkmetaList[setdiff(1:25, matchmL)],1])
     stop("Possible error in file 'metabolitesList.csv'.\n")
   }
-    
+  
   mL<-mL[,1,drop=FALSE]
   
   write.table(mL,file=dir3, sep = "\t", row.names=FALSE,col.names=FALSE,quote=FALSE)
@@ -191,6 +193,15 @@ batman<-function(BrukerDataDir, BrukerDataZipDir, txtFile, rData, batmanOptions,
     file.copy(txtFile, to=dir2, overwrite=TRUE)
     sa<-read.table(txtFile, header=TRUE,sep="\t",comment.char = "")
     #write.table(sa,file=dir2,row.names=FALSE,col.names=TRUE,quote=FALSE,sep = "\t")
+  } else if (!missing(nmrMLfile)) {
+    sa<-readnmrML(nmrMLfile)
+    write.table(sa,file=dir2,row.names=FALSE,col.names=TRUE,quote=FALSE,sep = "\t")
+  } else if (!missing(nmrMLZip)) {
+    sa<-readnmrMLzip(nmrMLZip)
+    write.table(sa,file=dir2,row.names=FALSE,col.names=TRUE,quote=FALSE,sep = "\t")
+  } else if (!missing(nmrMLDir)) {
+    sa<-readnmrMLDir(nmrMLDir)
+    write.table(sa,file=dir2,row.names=FALSE,col.names=TRUE,quote=FALSE,sep = "\t")
   } else if (!missing(rData)) {
     sa<-rData
     write.table(sa,file=dir2,row.names=FALSE,col.names=TRUE,quote=FALSE,sep = "\t")
@@ -208,36 +219,36 @@ batman<-function(BrukerDataDir, BrukerDataZipDir, txtFile, rData, batmanOptions,
     {
       createChemShiftPerSpec(templateOption = opt, dirA[2])
       stop("No chemShiftPerSpec.csv file found in BatmanInput folder.
-				 Creating one now, please modify the values.\n")
-		} else {
-		  # prepare chemshift for c++
-		  chemlist<-read.csv(dirCS,header=T,stringsAsFactors=FALSE,colClasses="character")
-		  if (dim(chemlist)[1] != dim(bor)[1])
-		  {
-		    stop(paste("Different number of multiplets in multiplet template file(s) and ", dirCS,
-		               "\nPlease modify chemShiftPerSpec.csv or call createChemShiftPerSpec() to create a new one.",sep = ""))
-		  }
-		    
-		  if ((dim(chemlist)[2]-2) != (dim(sa)[2]-1))
-		  {
-		    stop(paste("Different number of spectra in dataset and ", dirCS,
-		               "\nPlease modify chemShiftPerSpec.csv or call createChemShiftPerSpec() to create a new one.",sep = ""))
-		  }
+           Creating one now, please modify the values.\n")
+    } else {
+      # prepare chemshift for c++
+      chemlist<-read.csv(dirCS,header=T,stringsAsFactors=FALSE,colClasses="character")
+      if (dim(chemlist)[1] != dim(bor)[1])
+      {
+        stop(paste("Different number of multiplets in multiplet template file(s) and ", dirCS,
+                   "\nPlease modify chemShiftPerSpec.csv or call createChemShiftPerSpec() to create a new one.",sep = ""))
+      }
       
-		  for (i in 3:dim(chemlist)[2])
-		  {
-		    check<-chemlist[,i]=='n'
-		    chemlist[check,i]=-50
-		  }
-		  Dc<-order(chemlist[,1])
-		  chemlistor<-chemlist[Dc,]
-		  write.table(chemlistor,file=dir6,sep = "\t",row.names = FALSE,col.names = FALSE,quote=FALSE)
-		  cp<-file.copy(dir6,dir5)
-		}
+      if ((dim(chemlist)[2]-2) != (dim(sa)[2]-1))
+      {
+        stop(paste("Different number of spectra in dataset and ", dirCS,
+                   "\nPlease modify chemShiftPerSpec.csv or call createChemShiftPerSpec() to create a new one.",sep = ""))
+      }
+      
+      for (i in 3:dim(chemlist)[2])
+      {
+        check<-chemlist[,i]=='n'
+        chemlist[check,i]=-50
+      }
+      Dc<-order(chemlist[,1])
+      chemlistor<-chemlist[Dc,]
+      write.table(chemlistor,file=dir6,sep = "\t",row.names = FALSE,col.names = FALSE,quote=FALSE)
+      cp<-file.copy(dir6,dir5)
+    }
   }
   
   
-    
+  
   ## choose whether to parallelize spectra
   if (length(sno)>1 && fixeff == 0)    
   {
@@ -249,7 +260,7 @@ batman<-function(BrukerDataDir, BrukerDataZipDir, txtFile, rData, batmanOptions,
     wr<-1
   }
   
-
+  
   
   if ((ncol(sa)-1)<length(sno))
     return(cat("No. of spectra included smaller than input spectra.\n"))
@@ -273,7 +284,12 @@ batman<-function(BrukerDataDir, BrukerDataZipDir, txtFile, rData, batmanOptions,
   } else {
     cat ("Percentage completed...\n")
   }
-
+  #debug for time expense
+  para_time_end<-Sys.time()
+  time_log_tmp<-paste(dirctime,"/data_proc_time.txt",sep="")
+  time_elapsed<-as.numeric(para_time_end-begining, units="secs")
+  write(paste("parameter preparation time: ", time_elapsed, ": seconds", sep=""), time_log_tmp, append = TRUE)
+  
   ## calling c++ for MCMC
   if (wr>1) {              
     stime <- system.time ({
@@ -297,7 +313,7 @@ batman<-function(BrukerDataDir, BrukerDataZipDir, txtFile, rData, batmanOptions,
         close( pBar )
       }})[3]
   }
-
+  
   cat ("time ")
   print(stime)
   cat (" second.\n")
@@ -305,6 +321,9 @@ batman<-function(BrukerDataDir, BrukerDataZipDir, txtFile, rData, batmanOptions,
   
   cat("Reading in saved data in folder\n")
   ## read in batman result files
+  #debug for tie expense
+  plotting_start<-Sys.time()
+  
   BM<-readBatmanOutput(dirctime, dirA[2]) 
   cat(BM$outputDir)
   ## plot results
@@ -331,7 +350,13 @@ batman<-function(BrukerDataDir, BrukerDataZipDir, txtFile, rData, batmanOptions,
   # close all opened plot windows
   while (dev.cur()>1) {dev.off()}
   
+  #debug for time expense
+  plotting_end<-Sys.time()
+  time_elapsed<-as.numeric(plotting_end-plotting_start, units="secs")
+  write(paste("Plotting time: ", time_elapsed, ": seconds", sep=""), time_log_tmp, append = TRUE)
+  
   cat("\n Completed and all plots were saved in batmanOutput folder\n")
   warnRead<-options(warn = warnDef)
   return(BM)
-}
+  }
+
