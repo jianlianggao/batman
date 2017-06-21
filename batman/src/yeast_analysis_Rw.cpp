@@ -67,7 +67,7 @@
         iteration = itR;
 
         matrix Data;
-        read_txtf(&Data,Pfilenames[1]);
+        read_txtf(&Data,Pfilenames[1], Pfilenames[4]);
 
         int dsize = 2;
         if (options.fix == 1)
