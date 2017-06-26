@@ -1,6 +1,7 @@
 // written by Dr. Jie Hao, Dr William Astle
 #include "myheader.h"
 //for debug time expense
+#include <sys/time.h>
 #include "chain_template.h"
 
 void read_txtf(matrix *data, char filename[], char wfile[]) //added wfile[] for debuging time expense.
@@ -13,8 +14,10 @@ void read_txtf(matrix *data, char filename[], char wfile[]) //added wfile[] for 
 	int count=0; // count for the number of ' '
     int col = 0;
     //debug for time expense
+    struct timeval tv;
     time_t starting, ending;
-    time(&starting);
+    gettimeofday(&tv, NULL);
+    starting=tv.tv_usec; //microseconds,that is, 1e-6 second
     
     FILE *fp=fopen(filename,"r");
     
@@ -90,16 +93,18 @@ void read_txtf(matrix *data, char filename[], char wfile[]) //added wfile[] for 
     fclose(fp);
     
     //debug for timme expense
-    time(&ending);
-    double seconds;
-    seconds=difftime(ending,starting);
+    //time(&ending);
+    gettimeofday(&tv, NULL);
+    ending=tv.tv_usec;
+    long seconds;
+    seconds=ending-starting;
     //char filename2[400]={'\0'};
     filename1=filename1+"data_proc_time.txt";
     char filename2[400]={'\0'};
     strcpy(filename2, filename1.c_str());
     FILE *out;
     out=fopen(filename2, "a");
-    fprintf(out, "reading data spent %5f seconds. \n", seconds);
+    fprintf(out, "reading data spent %ld micro seconds. \n",starting, ending, seconds);
     fclose(out);
     
 
