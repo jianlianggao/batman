@@ -607,6 +607,16 @@ readBatmanOutput<-function(dirOP, dirIP,readMetaIndFitSam = TRUE,
     bet2<-bet
     Metabolite<-row.names(bet2)
     row.names(bet2)<-NULL
+    ##add HMDB identifiers and uri into RelCon
+    #dirTmp<-paste(dirA[2],"/multi_data_user.csv",sep="")
+    #multi_data_user_tmp<-read.csv(dirTmp)
+    #meta_ids_tmp<-cbind(multi_data_user_tmp['Metabolite'],multi_data_user_tmp['identifiers'],multi_data_user_tmp['ids_uri'])
+    
+    #meta_ids_tmp1<-unique(meta_ids_tmp)
+    #rownames(meta_ids_tmp1)<-seq(length=nrow(meta_ids_tmp1))
+    #Metabolite1<-merge(Metabolite, meta_ids_tmp1,by.x="x", by.y="Metabolite", sort=FALSE)
+    #colnames(Metabolite1)[1]<-"Metabolite"
+    ## original code was bet3<-cbind(Metabolite,bet2)
     bet3<-cbind(Metabolite,bet2)
     dirOPRC <- paste(dirOP,"/RelCon.txt",sep="")
     if (!file.exists(dirOPRC))
@@ -617,6 +627,16 @@ readBatmanOutput<-function(dirOP, dirIP,readMetaIndFitSam = TRUE,
     betrr2<-betrr
     Metabolite<-row.names(betrr2)
     row.names(betrr2)<-NULL
+    ##add identifier and uri into RelConRerun
+    #dirTmp<-paste(dirA[2],"/multi_data_user.csv",sep="")
+    #multi_data_user_tmp<-read.csv(dirTmp)
+    #meta_ids_tmp<-cbind(multi_data_user_tmp['Metabolite'],multi_data_user_tmp['identifiers'],multi_data_user_tmp['ids_uri'])
+    
+    #meta_ids_tmp1<-unique(meta_ids_tmp)
+    #rownames(meta_ids_tmp1)<-seq(length=nrow(meta_ids_tmp1))
+    #Metabolite1<-merge(Metabolite, meta_ids_tmp1,by.x="x", by.y="Metabolite", sort=FALSE)
+    #colnames(Metabolite1)[1]<-"Metabolite"
+    ##original was betrr3<-cbind(Metabolite,betrr2)
     betrr3<-cbind(Metabolite,betrr2)
     dirOPRCr<- paste(dirOP,"/RelConRerun.txt",sep="")
     if (!file.exists(dirOPRCr))
@@ -663,7 +683,18 @@ readBatmanOutput<-function(dirOP, dirIP,readMetaIndFitSam = TRUE,
       vA2<-vA
       percentage<-c('2.5%','97.5%') #<-names(vA2)
       Metabolite<-rep(t(specTitle[2,]),each=2)
+      ##add identifiers and HMDB uri into RelConCreInt 
+      #dirTmp<-paste(dirA[2],"/multi_data_user.csv",sep="")
+      #multi_data_user_tmp<-read.csv(dirTmp)
+      #meta_ids_tmp<-cbind(multi_data_user_tmp['Metabolite'],multi_data_user_tmp['identifiers'],multi_data_user_tmp['ids_uri'])
+      
+      #meta_ids_tmp1<-unique(meta_ids_tmp)
+      #rownames(meta_ids_tmp1)<-seq(length=nrow(meta_ids_tmp1))
+      #Metabolite1<-merge(Metabolite, meta_ids_tmp1,by.x="x", by.y="Metabolite", sort=FALSE)
+      
+      ##original was vA2<-rbind(Metabolite,percentage,vA2)
       vA2<-rbind(Metabolite,percentage,vA2)
+      ##original was row.names(vA2)<-c("Metabolite", "Percentage",row.names(bet))
       row.names(vA2)<-c("Metabolite", "Percentage",row.names(bet))
       write.table(vA2,file = dirOPRCCI, sep = "\t",row.names = TRUE,col.names = FALSE,quote=FALSE)
     }
@@ -701,8 +732,17 @@ readBatmanOutput<-function(dirOP, dirIP,readMetaIndFitSam = TRUE,
       vArr2<-vArr
       percentage<-c('2.5%','97.5%') #names(vArr2)
       Metabolite<-rep(t(specTitle[2,]),each=2)
+      ##add identifiers and HMDB uri into RelConCreInt 
+      #dirTmp<-paste(dirA[2],"/multi_data_user.csv",sep="")
+      #multi_data_user_tmp<-read.csv(dirTmp)
+      #meta_ids_tmp<-cbind(multi_data_user_tmp['Metabolite'],multi_data_user_tmp['identifiers'],multi_data_user_tmp['ids_uri'])
+      
+      #meta_ids_tmp1<-unique(meta_ids_tmp)
+      #rownames(meta_ids_tmp1)<-seq(length=nrow(meta_ids_tmp1))
+      #Metabolite1<-merge(Metabolite, meta_ids_tmp1,by.x="x", by.y="Metabolite", sort=FALSE)
+      
       vArr2<-rbind(Metabolite,percentage,vArr2)
-      row.names(vArr2)<-c("Metabolite", "Percentage",row.names(bet))
+      row.names(vArr2)<-c("Metabolite","Percentage",row.names(bet))
       write.table(vArr2, file = dirOPRCCIr, sep = "\t", row.names = TRUE, col.names = FALSE, quote=FALSE)
     }  
   }
