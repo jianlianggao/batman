@@ -3,8 +3,9 @@ Version: 1.2.1.12
 Author: Jie Hao,
     William Astle,
     Maria De Iorio,
-    Timothy Ebbels
-Maintainer: Jie Hao <j.hao@ic.ac.uk>
+    Timothy Ebbels,
+    Jianliang Gao
+Maintainer: Jianliang Gao <j.gao@imperial.ac.uk> and Jie Hao <j.hao@ic.ac.uk>
 Title: Bayesian AuTomated Metabolite Analyser for NMR spectra
 Description: BATMAN deconvolves resonance peaks from NMR spectra and obtain
     concentration estimates for the corresponding metabolites automatically.
