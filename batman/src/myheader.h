@@ -9,6 +9,8 @@
 #include <cmath>
 #include <ctime>
 #include <iostream>
+#include <fstream> //for writing matrix into a file
+
 #include <string>
 #include <numeric>
 #include <iomanip>
@@ -62,7 +64,7 @@ int read_datf(vector<string> * name, matrix *c1, matrix *c2, matrix *c3, matrix 
 matrix *c5, matrix *c7, matrixI *c8, char filename[]);
 
 int read_dat_chemshift(vector<string> * name, matrix *c1,matrix *c2, char filename[], int s);
-void read_txtf(matrix *data, char filename[]);
+void read_txtf(matrix *data, char filename[], char wfile[]);
 void read_txt_metalist(vector<string> *data, char filename[]);
  
 

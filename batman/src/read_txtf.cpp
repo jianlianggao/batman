@@ -1,8 +1,10 @@
 // written by Dr. Jie Hao, Dr William Astle
 #include "myheader.h"
+//for debug time expense
+#include <sys/time.h>
+#include "chain_template.h"
 
-
-void read_txtf(matrix *data, char filename[])
+void read_txtf(matrix *data, char filename[], char wfile[]) //added wfile[] for debuging time expense.
 {
 	int BUFF_SIZE=40000;
 	char buffer[BUFF_SIZE];
@@ -11,7 +13,22 @@ void read_txtf(matrix *data, char filename[])
 	int j=0;// i and j are row and column indeces of c, which are start from 0 to 2503 and 99, respectively
 	int count=0; // count for the number of ' '
     int col = 0;
+    //debug for time expense
+    struct timeval tv;
+    time_t starting, ending;
+    gettimeofday(&tv, NULL);
+    starting=tv.tv_usec; //microseconds,that is, 1e-6 second
+    
     FILE *fp=fopen(filename,"r");
+    
+    //debug
+    printf("opening file %s \n",filename);
+    //get path of filename
+    string filename1;
+    filename1=wfile;
+    
+    printf("path is %s \n", filename1.c_str());
+    
 
     if( !fp)
     {
@@ -74,6 +91,22 @@ void read_txtf(matrix *data, char filename[])
     j=0;
     }
     fclose(fp);
+    
+    //debug for timme expense
+    //time(&ending);
+    gettimeofday(&tv, NULL);
+    ending=tv.tv_usec;
+    long seconds;
+    seconds=ending-starting;
+    //char filename2[400]={'\0'};
+    filename1=filename1+"data_proc_time.txt";
+    char filename2[400]={'\0'};
+    strcpy(filename2, filename1.c_str());
+    FILE *out;
+    out=fopen(filename2, "a");
+    fprintf(out, "reading data spent %ld micro seconds. \n",starting, ending, seconds);
+    fclose(out);
+    
 
 }
 
