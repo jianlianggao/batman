@@ -1,0 +1,11 @@
+database_identifier	chemical_formula	smiles	inchi	metabolite_identification	chem_shift	multiplicity	taxid	species	database	database_version	reliability	uri	search_engine	search_engine_score	smallmolecule_abundance_sub	smallmolecule_abundance_stdev_sub	smallmolecule_abundance_std_error_sub	Mesa.rack.1	Mesa.rack.1.1	Mesa.rack.1.2	Mesa.rack.1.3
+HMDB00190				L-Lactic acid	1.32_4.1	d_q			HMDB			http://www.hmdb.ca/metabolites/HMDB00190						0.00217707339392926	0.00309424448983824	0.00175398708190991	0.00266926685004275
+HMDB00161				L-Alanine	1.46_3.76	d_q			HMDB			http://www.hmdb.ca/metabolites/HMDB00161						0.00050928146752573	0.000845161059311796	0.000680750340542719	0.000619677077481941
+HMDB00883				L-Valine	0.976_1.029_2.261_3.601	d_d_m_d			HMDB			http://www.hmdb.ca/metabolites/HMDB00883						0.0002889903521002	4.52098564177323e-05	5.12218019979132e-05	0.000487395737791896
+HMDB00177				L-Histidine	7.09_7.9	s_s			HMDB			http://www.hmdb.ca/metabolites/HMDB00177						7.81770922390091e-05	7.59994158943607e-05	7.84563982988334e-05	4.31218595947358e-05
+HMDB00142				Formic acid	8.44	s			HMDB			http://www.hmdb.ca/metabolites/HMDB00142						0.000123401194953991	0.000152794362733232	0.000140707315043234	0.000148979083942974
+HMDB00167				L-Threonine	1.31_3.57	d_d			HMDB			http://www.hmdb.ca/metabolites/HMDB00167						0.000566898186912843	0.000105411166340339	0.000563149463413736	0.000176697091713561
+HMDB00243				Pyruvic acid	2.46	s			HMDB			http://www.hmdb.ca/metabolites/HMDB00243						7.02881980670775e-05	3.98108224062812e-05	1.76494350176356e-05	1.48489815253352e-05
+HMDB00148				L-Glutamic acid	2.04_2.119_2.341_3.749	m_m_m_q			HMDB			http://www.hmdb.ca/metabolites/HMDB00148						0.000678460966618462	0.00212170186550457	0.00128534687216223	0.00212200932323282
+HMDB00122				D-Glucose	5.22_3.728	d_m			HMDB			http://www.hmdb.ca/metabolites/HMDB00122						0.000583913540361705	0.000609941074153293	0.000550383361279352	0.000657367832567216
+HMDB00169				D-mannose	5.172	d			HMDB			http://www.hmdb.ca/metabolites/HMDB00169						0.000560171477930938	0.000401973317383467	0.000272105116906548	0.000245560164717045
