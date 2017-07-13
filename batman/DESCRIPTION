@@ -1,5 +1,5 @@
 Package: batman
-Version: 1.2.1.10
+Version: 1.2.1.1202
 Author: Jie Hao,
     William Astle,
     Maria De Iorio,
@@ -9,6 +9,7 @@ Maintainer: Jie Hao <j.hao@ic.ac.uk>, Jianliang Gao <j.gao@imperial.ac.uk>
 Title: Bayesian AuTomated Metabolite Analyser for NMR spectra
 Description: BATMAN deconvolves resonance peaks from NMR spectra and obtain
     concentration estimates for the corresponding metabolites automatically.
+    (with debug of data prepare and process time)
 Depends:
     R (>= 2.15.0),
     doSNOW,
