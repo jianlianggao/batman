@@ -13,7 +13,22 @@ checkBatmanOptions<-function(dir)
   cosys <- as.matrix(contentsys)
   
   
-  content <-read.table(dir,sep="\n",comment.char = "")
+  # origin line is :   content <-read.table(dir,sep="\n",comment.char = "")
+  # to catch error and repeat by Jianliang Gao
+  content<-NULL
+  attempt<-1
+  while (is.null(content) && attempt<100){
+    attempt<-attempt+1
+    try(
+      content <-read.table(dir,sep="\n",comment.char = "")
+    )
+    if (is.null(content)){
+      Sys.sleep(2)
+    }
+  }
+  
+  
+  
   iscomment <- substr(content[,1],1,1)
   ## remove empty line
   sID <- NULL
