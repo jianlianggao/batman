@@ -5,7 +5,7 @@ addMAFinfo<-function(multi_data_file,list_file )
   temp_metabolite<-read.csv(multi_data_file)
   temp_metabolite$flag2 <- with(temp_metabolite, match(Metabolite, unique(Metabolite)))
   metabolite_attr<-vector()
-  metabolite_attr<-data.frame(Metabolite=numeric(0),chem_shift=numeric(0), multiplicity=numeric(0))
+  metabolite_attr<-data.frame(Metabolite=numeric(0),chemical_shift=numeric(0), multiplicity=numeric(0))
   for (i in 1:max(temp_metabolite$flag2))
   {
     newrow<-nrow(metabolite_attr)+1
@@ -13,13 +13,13 @@ addMAFinfo<-function(multi_data_file,list_file )
       if ((temp_metabolite[j,]$flag2)==i)
       {
         metabolite_attr[newrow,]$Metabolite<-paste(temp_metabolite[j, "Metabolite"])
-        if (!is.na(metabolite_attr[newrow,]$chem_shift)) 
+        if (!is.na(metabolite_attr[newrow,]$chemical_shift)) 
         {
-          metabolite_attr[newrow,]$chem_shift<-paste(metabolite_attr[newrow,]$chem_shift,"_",temp_metabolite[j,"pos_in_ppm"],sep="")
+          metabolite_attr[newrow,]$chemical_shift<-paste(metabolite_attr[newrow,]$chemical_shift,"_",temp_metabolite[j,"pos_in_ppm"],sep="")
         } 
         else 
         {
-          metabolite_attr[newrow,]$chem_shift<-paste(temp_metabolite[j,"pos_in_ppm"])
+          metabolite_attr[newrow,]$chemical_shift<-paste(temp_metabolite[j,"pos_in_ppm"])
         }
         if (!is.na(metabolite_attr[newrow,]$multiplicity))
         {
