@@ -75,10 +75,10 @@ docker run docker-registry.phenomenal-h2020.eu/phnmnl/batman ...
 
 ## Publications
 
-- Hao, J., et al., BATMAN¨Can R package for the automated quantification of metabolites from nuclear
+- Hao, J., et al., BATMAN - an R package for the automated quantification of metabolites from nuclear
 magnetic resonance spectra using a Bayesian model. Bioinformatics, 2012. 28(15): p. 2088-90.
 http://bioinformatics.oxfordjournals.org/content/28/15/2088
+
 - Astle, W., et al., A Bayesian Model of NMR Spectra for the Deconvolution and Quantification
-of Metabolites in Complex Biological Mixtures. Journal of the American Statistical Association,
-2012. 107(500): p. 1259-1271.
+of Metabolites in Complex Biological Mixtures. Journal of the American Statistical Association, 2012. 107(500): p. 1259-1271.
 http://www.tandfonline.com/doi/abs/10.1080/01621459.2012.695661#.UgEf-hbZa4k.
