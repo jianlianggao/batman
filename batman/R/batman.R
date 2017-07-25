@@ -32,17 +32,75 @@ batman<-function(BrukerDataDir, BrukerDataZipDir, txtFile, nmrMLfile, nmrMLZip, 
   if (!missing(batmanOptions))
   {
     dirTmp<-paste(dirA[2],"/batmanOptions.txt",sep="")
-    file.copy(batmanOptions, to=dirTmp, overwrite=TRUE)
+    #check file is empty or not. By J Gao
+    content<-NULL
+    attempt<-0
+    while (is.null(content) && attempt<100){
+      attempt<-attempt+1
+      tryCatch({
+        file.copy(batmanOptions, to=dirTmp, overwrite=TRUE)
+        content <-read.table(dirTmp,sep="\n",comment.char = "")
+      }, error=function(err){
+        Sys.sleep(0.2)
+      }
+      )
+      #if (is.null(content)){
+      #  Sys.sleep(0.2)
+      #}
+    }
+    cat("times of try for copying batmanOptions.txt:  ")
+    cat(attempt)
+    cat("\n")
+    #file.copy(batmanOptions, to=dirTmp, overwrite=TRUE)
   }
   if (!missing(multiDataUser))
   {
     dirTmp<-paste(dirA[2],"/multi_data_user.csv",sep="")
-    file.copy(multiDataUser, to=dirTmp, overwrite=TRUE)
+    #check file is empty or not. By J Gao
+    content<-NULL
+    attempt<-0
+    while (is.null(content) && attempt<100){
+      attempt<-attempt+1
+      tryCatch({
+        file.copy(multiDataUser, to=dirTmp, overwrite=TRUE)
+        content <-read.table(dirTmp,sep="\n",comment.char = "")
+      }, error=function(err){
+        Sys.sleep(0.2)
+      }
+      )
+      #if (is.null(content)){
+      #  Sys.sleep(0.2)
+      #}
+    }
+    cat("times of try for copying multi_data_user.csv:  ")
+    cat(attempt)
+    cat("\n")
+    #file.copy(multiDataUser, to=dirTmp, overwrite=TRUE)
   }
   if (!missing(metaList))
   {
     dirTmp<-paste(dirA[2],"/metabolitesList.csv",sep="")
-    file.copy(metaList, to=dirTmp, overwrite=TRUE)
+    #check file is empty or not. By J Gao
+    content<-NULL
+    attempt<-0
+    while (is.null(content) && attempt<100){
+      attempt<-attempt+1
+      tryCatch({
+        file.copy(metaList, to=dirTmp, overwrite=TRUE)
+        content <-read.table(dirTmp,sep="\n",comment.char = "")
+      }, error=function(err){
+        Sys.sleep(0.2)
+      }
+      )
+      #if (is.null(content)){
+      #  Sys.sleep(0.2)
+      #}
+    }
+    
+    cat("times of try for copying metabolitesList.csv:  ")
+    cat(attempt)
+    cat("\n")
+    #file.copy(metaList, to=dirTmp, overwrite=TRUE)
   }
   
   
