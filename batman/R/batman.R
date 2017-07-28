@@ -38,7 +38,7 @@ batman<-function(BrukerDataDir, BrukerDataZipDir, txtFile, nmrMLfile, nmrMLZip, 
     while (is.null(content) && attempt<100){
       attempt<-attempt+1
       tryCatch({
-        file.copy(batmanOptions, to=dirTmp, overwrite=TRUE)
+        file.link(batmanOptions, to=dirTmp)
         content <-read.table(dirTmp,sep="\n",comment.char = "")
       }, error=function(err){
         Sys.sleep(0.2)
@@ -62,7 +62,7 @@ batman<-function(BrukerDataDir, BrukerDataZipDir, txtFile, nmrMLfile, nmrMLZip, 
     while (is.null(content) && attempt<100){
       attempt<-attempt+1
       tryCatch({
-        file.copy(multiDataUser, to=dirTmp, overwrite=TRUE)
+        file.link(multiDataUser, to=dirTmp)
         content <-read.table(dirTmp,sep="\n",comment.char = "")
       }, error=function(err){
         Sys.sleep(0.2)
@@ -86,7 +86,7 @@ batman<-function(BrukerDataDir, BrukerDataZipDir, txtFile, nmrMLfile, nmrMLZip, 
     while (is.null(content) && attempt<100){
       attempt<-attempt+1
       tryCatch({
-        file.copy(metaList, to=dirTmp, overwrite=TRUE)
+        file.link(metaList, to=dirTmp)
         content <-read.table(dirTmp,sep="\n",comment.char = "")
       }, error=function(err){
         Sys.sleep(0.2)
@@ -248,7 +248,7 @@ batman<-function(BrukerDataDir, BrukerDataZipDir, txtFile, nmrMLfile, nmrMLZip, 
     write.table(sa,file=dir2,row.names=FALSE,col.names=TRUE,quote=FALSE,sep = "\t")
   }  else if (!missing(txtFile)) {
     # modified as suggested by Dr Gonçalo Correia
-    file.copy(txtFile, to=dir2, overwrite=TRUE)
+    file.link(txtFile, to=dir2)
     sa<-read.table(txtFile, header=TRUE,sep="\t",comment.char = "")
     #write.table(sa,file=dir2,row.names=FALSE,col.names=TRUE,quote=FALSE,sep = "\t")
   } else if (!missing(nmrMLfile)) {
