@@ -41,7 +41,7 @@ batman<-function(BrukerDataDir, BrukerDataZipDir, txtFile, nmrMLfile, nmrMLZip, 
         file.link(batmanOptions, to=dirTmp)
         content <-read.table(dirTmp,sep="\n",comment.char = "")
       }, error=function(err){
-        Sys.sleep(0.2)
+        Sys.sleep(runif(1, 0.1, 2.0))
       }
       )
       #if (is.null(content)){
@@ -65,7 +65,7 @@ batman<-function(BrukerDataDir, BrukerDataZipDir, txtFile, nmrMLfile, nmrMLZip, 
         file.link(multiDataUser, to=dirTmp)
         content <-read.table(dirTmp,sep="\n",comment.char = "")
       }, error=function(err){
-        Sys.sleep(0.2)
+        Sys.sleep(runif(1, 0.1, 2.0))
       }
       )
       #if (is.null(content)){
@@ -89,7 +89,7 @@ batman<-function(BrukerDataDir, BrukerDataZipDir, txtFile, nmrMLfile, nmrMLZip, 
         file.link(metaList, to=dirTmp)
         content <-read.table(dirTmp,sep="\n",comment.char = "")
       }, error=function(err){
-        Sys.sleep(0.2)
+        Sys.sleep(runif(1, 0.1, 2.0))
       }
       )
       #if (is.null(content)){
