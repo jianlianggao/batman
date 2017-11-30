@@ -127,9 +127,10 @@ batman<-function(BrukerDataDir, BrukerDataZipDir, txtFile, nmrMLfile, nmrMLZip, 
   
   dir5<-paste(dirctime,"/",sep="")
   
-  cp<-file.copy(dir1,dir5)
-  dirList<-paste(dirA[2],"/metabolitesList.csv",sep="")
-  cp<-file.copy(dirList,dir5)
+#the following 3 lines were commented out for testing cloud file system overhead 30NOV2017 by J Gao
+  #cp<-file.copy(dir1,dir5)
+  #dirList<-paste(dirA[2],"/metabolitesList.csv",sep="")
+  #cp<-file.copy(dirList,dir5)
   
   filedir<-c(dir1,dir2,dir3,dir4,dir5,dir6,dir7)
   
@@ -333,7 +334,7 @@ batman<-function(BrukerDataDir, BrukerDataZipDir, txtFile, nmrMLfile, nmrMLZip, 
   write.table(stit[,sno],file=paste(dirctime, "/spectraTitle.txt", sep=""),row.names=FALSE,col.names=FALSE,quote=FALSE,sep = "\t")
   
   ##cp<-file.copy(dir2,dir5)  #- not copying NMRdata.txt to the output folder to avoid huge disk demanding
-  cp<-file.copy(dir4,dir5)
+  #cp<-file.copy(dir4,dir5)  #- not copying file to output folder for testing cloud file system overhead 30Nov2017 J Gao
   
   rr<-0
   if (wr>1) {
@@ -343,10 +344,10 @@ batman<-function(BrukerDataDir, BrukerDataZipDir, txtFile, nmrMLfile, nmrMLZip, 
     cat ("Percentage completed...\n")
   }
   #debug for time expense
-  para_time_end<-Sys.time()
-  time_log_tmp<-paste(dirctime,"/data_proc_time.txt",sep="")
-  time_elapsed<-as.numeric(para_time_end-begining, units="secs")
-  write(paste("parameter preparation time: ", time_elapsed, ": seconds", sep=""), time_log_tmp, append = TRUE)
+  #para_time_end<-Sys.time()
+  #time_log_tmp<-paste(dirctime,"/data_proc_time.txt",sep="")
+  #time_elapsed<-as.numeric(para_time_end-begining, units="secs")
+  #write(paste("parameter preparation time: ", time_elapsed, ": seconds", sep=""), time_log_tmp, append = TRUE)
   
   ## calling c++ for MCMC
   if (wr>1) {              
@@ -382,15 +383,15 @@ batman<-function(BrukerDataDir, BrukerDataZipDir, txtFile, nmrMLfile, nmrMLZip, 
   #debug for tie expense
   plotting_start<-Sys.time()
   
-  BM<-readBatmanOutput(dirctime, dirA[2]) 
-  cat(BM$outputDir)
+  #BM<-readBatmanOutput(dirctime, dirA[2]) 
+  #cat(BM$outputDir)
   ## plot results
-  if (figBatmanFit)
-    plotBatmanFit(BM, saveFigDir = dirctime, listMeta = listMeta)
-  if (figRelCon) 
-    plotRelCon(BM, saveFigDir = dirctime)
-  if (figMetaFit)
-    plotMetaFit(BM, saveFigDir = dirctime)
+  #if (figBatmanFit)
+  #  plotBatmanFit(BM, saveFigDir = dirctime, listMeta = listMeta)
+  #if (figRelCon) 
+  #  plotRelCon(BM, saveFigDir = dirctime)
+  #if (figMetaFit)
+  #  plotMetaFit(BM, saveFigDir = dirctime)
   if (file.exists(dir3))
   {
     file.remove(dir3)
@@ -415,6 +416,7 @@ batman<-function(BrukerDataDir, BrukerDataZipDir, txtFile, nmrMLfile, nmrMLZip, 
   
   cat("\n Completed and all plots were saved in batmanOutput folder\n")
   warnRead<-options(warn = warnDef)
-  return(BM)
+  #return(BM)
+  returm(1)
   }
 

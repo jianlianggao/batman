@@ -152,21 +152,21 @@
 		}
 		
 
-        char fdirL[3000]={'\0'};
-        strcpy(fdirL,Pfilenames[4]);
-        strcat(fdirL,"L_");
-        strcat(fdirL,sbuf);
-        strcat(fdirL,".txt");
-        write_txtf_M(&reconL0,fdirL);
+        //char fdirL[3000]={'\0'};
+        //strcpy(fdirL,Pfilenames[4]);
+        //strcat(fdirL,"L_");
+        //strcat(fdirL,sbuf);
+        //strcat(fdirL,".txt");
+        //write_txtf_M(&reconL0,fdirL);
 
         time_t seconds, seconds2;
         seconds = time (NULL);
-        char fdirrr[3000]={'\0'};
-        strcpy(fdirrr,Pfilenames[4]);
-        strcat(fdirrr,"delta_draw_mean_");
-        strcat(fdirrr,sbuf);
-        strcat(fdirrr,".txt");
-        FILE *out;
+        //char fdirrr[3000]={'\0'};
+        //strcpy(fdirrr,Pfilenames[4]);
+        //strcat(fdirrr,"delta_draw_mean_");
+        //strcat(fdirrr,sbuf);
+        //strcat(fdirrr,".txt");
+        //FILE *out;
 
         Rprintf("\nSize of each spectrum is %i.\n",x.size());
         Rprintf("Size of metabolite list is %i.\n",TemsU.size());
@@ -287,33 +287,33 @@
         seconds2 = time (NULL);
         Rprintf("\ntime used is %i seconds.\n", seconds2-seconds);
         Rprintf("saving posteriors...\n ");
-        // save results
-        matrix dataH(dsize);
-        datamod(&Data,&options, 1, dppm, &dataH, s);
-        if (options.saveHR == 1)
-        {
-            char fdirdH[3000]={'\0'};
-            strcpy(fdirdH,Pfilenames[4]);
-            strcat(fdirdH,"NMRdata_mod_");
-            strcat(fdirdH,sbuf);
-            strcat(fdirdH,".txt");
-            write_txtf_M(&dataH, fdirdH);
-        }
-        int sit = 0;
-        if (options.fix == 1)
-        {
-            for (sit =  0; sit <= s; sit ++)
-            {
-                write_results_all(sit, sit, rr, &chain, &data, Pfilenames[4],iteration,options.stop_burnin, &x,
-                        options.saveHR, &dataH);
-            }
-        }
-        else
-        {
-            sit = 0;
-            write_results_all(s, sit, rr, &chain, &data, Pfilenames[4],iteration,options.stop_burnin, &x,
-                    options.saveHR, &dataH);
-        }
+        // save results //commented out for testing cloud file system overhead 30NOV2017 by J Gao
+        //matrix dataH(dsize);
+        //datamod(&Data,&options, 1, dppm, &dataH, s);
+        //if (options.saveHR == 1)
+        //{
+        //    char fdirdH[3000]={'\0'};
+        //    strcpy(fdirdH,Pfilenames[4]);
+        //    strcat(fdirdH,"NMRdata_mod_");
+        //    strcat(fdirdH,sbuf);
+        //    strcat(fdirdH,".txt");
+        //    write_txtf_M(&dataH, fdirdH);
+        //}
+        //int sit = 0;
+        //if (options.fix == 1)
+        //{
+        //    for (sit =  0; sit <= s; sit ++)
+        //    {
+        //        write_results_all(sit, sit, rr, &chain, &data, Pfilenames[4],iteration,options.stop_burnin, &x,
+        //                options.saveHR, &dataH);
+        //    }
+        //}
+        //else
+        //{
+         //   sit = 0;
+         //   write_results_all(s, sit, rr, &chain, &data, Pfilenames[4],iteration,options.stop_burnin, &x,
+         //           options.saveHR, &dataH);
+        //}
 //for (int nii = 0; nii <chain.spectra[0].FTems.size(); nii++)
 //cout <<"chain "<<chain.spectra[0].FTems[nii].name<< "_"<<chain.spectra[0].FTems[nii].multiplet_sites[0].pos_ppm<<endl;
 
