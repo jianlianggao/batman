@@ -331,7 +331,7 @@ batman<-function(BrukerDataDir, BrukerDataZipDir, txtFile, nmrMLfile, nmrMLZip, 
     stit<-rbind(1:(ncol(sa)-1),1:(ncol(sa)-1))
   }
   ## spectra number
-  write.table(stit[,sno],file=paste(dirctime, "/spectraTitle.txt", sep=""),row.names=FALSE,col.names=FALSE,quote=FALSE,sep = "\t")
+  #write.table(stit[,sno],file=paste(dirctime, "/spectraTitle.txt", sep=""),row.names=FALSE,col.names=FALSE,quote=FALSE,sep = "\t")
   
   ##cp<-file.copy(dir2,dir5)  #- not copying NMRdata.txt to the output folder to avoid huge disk demanding
   #cp<-file.copy(dir4,dir5)  #- not copying file to output folder for testing cloud file system overhead 30Nov2017 J Gao

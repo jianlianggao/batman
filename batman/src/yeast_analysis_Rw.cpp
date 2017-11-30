@@ -114,22 +114,23 @@
 			system("PAUSE");
             exit(1);
         }
-        char fdirML[3000]={'\0'};
-        strcpy(fdirML,Pfilenames[4]);
-        strcat(fdirML,"metabolitesListUsed.txt");
+        //following lines until fclose(outM) were commented for testing cloud file system overhead. 30Nov2017 by J Gao
+        //char fdirML[3000]={'\0'};
+        //strcpy(fdirML,Pfilenames[4]);
+        //strcat(fdirML,"metabolitesListUsed.txt");
 
-        FILE *outM;
-        outM = fopen(fdirML,"w");
+        //FILE *outM;
+        //outM = fopen(fdirML,"w");
         // wirte to file the metabolites in range for anaylsis
-        for (unsigned int cv = 0; cv <Tems.size(); cv++)
-        {
-            fprintf(outM, "%s",Tems[cv].name.c_str());
-            if (cv <=(Tems.size()-1))
-			{
-                fprintf(outM, "\n");
-			}
-        }
-        fclose(outM);
+        //for (unsigned int cv = 0; cv <Tems.size(); cv++)
+        //{
+        //    fprintf(outM, "%s",Tems[cv].name.c_str());
+        //    if (cv <=(Tems.size()-1))
+//			{
+//                fprintf(outM, "\n");
+//			}
+  //      }
+    //    fclose(outM);
 
         chain_template chain(&Tems, &data,&rng, &options);
         seconds6 = time (NULL);

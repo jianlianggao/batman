@@ -96,18 +96,18 @@ void read_txtf(matrix *data, char filename[], char wfile[]) //added wfile[] for 
     
     //debug for timme expense
     //time(&ending);
-    gettimeofday(&tv, NULL);
-    ending=tv.tv_usec;
-    long seconds;
-    seconds=ending-starting;
+    //gettimeofday(&tv, NULL);
+    //ending=tv.tv_usec;
+    //long seconds;
+    //seconds=ending-starting;
     //char filename2[400]={'\0'};
-    filename1=filename1+"data_proc_time.txt";
-    char filename2[400]={'\0'};
-    strcpy(filename2, filename1.c_str());
-    FILE *out;
-    out=fopen(filename2, "a");
-    fprintf(out, "reading data spent %ld micro seconds. \n",starting, ending, seconds);
-    fclose(out);
+    //filename1=filename1+"data_proc_time.txt";
+    //char filename2[400]={'\0'};
+    //strcpy(filename2, filename1.c_str());
+    //FILE *out;
+    //out=fopen(filename2, "a");
+    //fprintf(out, "reading data spent %ld micro seconds. \n",starting, ending, seconds);
+    //fclose(out);
     
 
 }
