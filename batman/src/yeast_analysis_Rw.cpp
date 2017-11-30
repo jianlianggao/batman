@@ -161,12 +161,12 @@
 
         time_t seconds, seconds2;
         seconds = time (NULL);
-        //char fdirrr[3000]={'\0'};
-        //strcpy(fdirrr,Pfilenames[4]);
-        //strcat(fdirrr,"delta_draw_mean_");
-        //strcat(fdirrr,sbuf);
-        //strcat(fdirrr,".txt");
-        //FILE *out;
+        char fdirrr[3000]={'\0'};
+        strcpy(fdirrr,Pfilenames[4]);
+        strcat(fdirrr,"delta_draw_mean_");
+        strcat(fdirrr,sbuf);
+        strcat(fdirrr,".txt");
+        FILE *out;
 
         Rprintf("\nSize of each spectrum is %i.\n",x.size());
         Rprintf("Size of metabolite list is %i.\n",TemsU.size());
