@@ -417,6 +417,6 @@ batman<-function(BrukerDataDir, BrukerDataZipDir, txtFile, nmrMLfile, nmrMLZip, 
   cat("\n Completed and all plots were saved in batmanOutput folder\n")
   warnRead<-options(warn = warnDef)
   #return(BM)
-  returm(1)
+  return(1)
   }
 
