@@ -51,7 +51,9 @@ void read_txtf(matrix *data, char filename[], char wfile[]) //added wfile[] for 
     (*data).resize(col+1);
     //resize the buffer size;
     BUFF_SIZE = col*20;
-    printf("Buffer size is adjusted to %i \n", BUFF_SIZE);
+    //printf("Buffer size is adjusted to %i \n", BUFF_SIZE);
+    if (BUFF_SIZE<200)
+      BUFF_SIZE=200;
     
     
     while( 1 )
