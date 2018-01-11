@@ -1,7 +1,7 @@
 ![Logo](BATMAN_logo.gif)
 
 # BATMAN
-Version: 1.2.1.08
+Version: 1.2.12.1
 
 ## Short Description
 
