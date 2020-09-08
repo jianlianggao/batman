@@ -72,6 +72,8 @@ For direct docker usage:
 ```bash
 docker run docker-registry.phenomenal-h2020.eu/phnmnl/batman ...
 ```
+More detail can be found at:
+- https://jianlianggao.github.io/batman
 
 ## Publications
 
